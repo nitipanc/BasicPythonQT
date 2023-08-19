@@ -1,0 +1,2 @@
+# BasicPythonQT
+Updated Dynamically Wigets
