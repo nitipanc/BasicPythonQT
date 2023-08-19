@@ -1,0 +1,54 @@
+# importing libraries
+from PyQt6.QtWidgets import *
+from PyQt6.QtGui import *
+from PyQt6.QtCore import *
+import sys
+ 
+ 
+class ToggleButton(QWidget):
+
+    def __init__(self):
+        super().__init__()
+
+        # create a push button
+        self.button = QPushButton('Off', self)
+
+        # set the button to be checkable
+        self.button.setCheckable(True)
+
+        # load the icons
+        self.on_icon = QIcon('on.png')
+        self.off_icon = QIcon('off.png')
+
+        # set the initial icon
+        self.button.setIcon(self.off_icon)
+
+        # connect the button to a slot function
+        self.button.clicked.connect(self.on_click)
+
+        # resize and move the button
+        self.button.resize(100, 100)
+        self.button.move(50, 50)
+
+        # resize and show the window
+        self.resize(200, 200)
+        self.show()
+
+    def on_click(self):
+        # get the state of the button
+        checked = self.button.isChecked()
+
+        # change the text and icon according to the state
+        if checked:
+            self.button.setText('On')
+            self.button.setIcon(self.on_icon)
+        else:
+            self.button.setText('Off')
+            self.button.setIcon(self.off_icon)
+
+# create an application and a window
+app = QApplication(sys.argv)
+window = ToggleButton()
+
+# run the application
+sys.exit(app.exec_())
